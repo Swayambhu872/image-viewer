@@ -1,0 +1,75 @@
+.app-header {
+    background-color: #263238;
+    height: 36px;
+  }
+  
+  .app-logo {
+    color: #fff;
+    font-size: 18px;
+    vertical-align: center;
+  }
+  .tabs {
+    margin-bottom: 20px;
+  }
+  
+  .flex-container {
+    display: flex;
+  }
+  .grid-item {
+    margin: 15px;
+  }
+  
+  .cardStyle {
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+  }
+  
+  .image-properties {
+    display:flex;
+    justify-content: center;
+    padding: 20px;
+    width: 'auto';
+    height:'auto';
+  
+  }
+  .cardHeader {
+    display:flex;
+    float:flex-start;
+  }
+  .cardContent {
+    display:flex;
+    justify-content: center;
+  
+  }
+  .iconColor {
+    color:red;
+  }
+  .likesFont {
+    font-size: 200px;
+    display:flex;
+    justify-content: flex-start;
+    vertical-align: center;
+  }
+  .hash-tags {
+    font-size: 24px;
+    color: #61dafb;
+  }
+  .dispComment {
+    display:block;
+  }
+  .comment-username {
+    font-display: bold;
+  }
+  .avatar {
+    margin-left: auto;
+    float:right;
+  }
+  header.MuiPaper-root-17.MuiPaper-elevation4-23.MuiAppBar-root-8.MuiAppBar-positionStatic-12.MuiAppBar-colorPrimary-15 {
+    background-color: #263238;
+    color:black;
+  }
+  h6.MuiTypography-root-48.MuiTypography-h6-65.MuiTypography-noWrap-74.color {
+    color: #fff;
+    font-size: 18px;
+  }
