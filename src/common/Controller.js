@@ -10,7 +10,7 @@ class Controller extends Component {
         this.state = {
             loggedIn: sessionStorage.getItem("access-token") == null ? false : true
         }
-        this.baseUrl = "https://api.instagram.com/v1/users/self/";
+        this.baseUrl = "https://graph.instagram.com/";
     }
 
     render() {
