@@ -18,7 +18,7 @@ class Controller extends Component {
             <div>
                 <Router>
                     <Route exact path='/' render={(props) => <Login {...props}  baseUrl={this.baseUrl} />} />
-                    <Route path='/home/' render={(props) => this.state.loggedIn ? (<Home {...props} baseUrl={this.baseUrl} />) : (<Redirect to='/' />)} />
+                    <Route path='/home' render={(props) => this.state.loggedIn ? (<Home {...props} baseUrl={this.baseUrl} />) : (<Redirect to='/' />)} />
                     
                 </Router>
             </div>
