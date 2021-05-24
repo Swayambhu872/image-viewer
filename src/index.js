@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Controller from './screens/Controller';
+import Controller from '../src/common/Controller';
 
 
 import reportWebVitals from './reportWebVitals';

@@ -1,0 +1,22 @@
+.cardStyle{
+    width: 30%;
+    margin-top: 10px;
+    position: absolute;
+    left: 40%;
+}
+.login-content{
+    margin-left: 8%;
+}
+.dispNone {
+    display: none;
+}
+
+.dispBlock {
+    display: block;
+}
+
+.red {
+    color: red;
+}
+
+
