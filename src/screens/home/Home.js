@@ -1,179 +1,234 @@
-import React, { Component } from 'react';
-import './Home.css';
-import Typography from '@material-ui/core/Typography';
-import Input from '@material-ui/core/Input';
-import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import Avatar from '@material-ui/core/Avatar';
-import Header from '../../common/header/Header';
-import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import InputLabel from '@material-ui/core/InputLabel';
-import Button from '@material-ui/core/Button';
-import hearticon from '../../assets/icon/hearticon.svg';
+import {
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    CardHeader,
+    Divider,
+    Grid,
+    TextField,
+    Typography
+  } from "@material-ui/core";
+  import React, { useState, useEffect } from "react";
+  import Header from "../../common/header";
+  import "./Home.css";
+  import userImage from "../../assets/images/user.png";
+  import moment from "moment";
+  import { Favorite, FavoriteBorder } from "@material-ui/icons";
+  
+  const Home = props => {
+    const [homeDetails, setHomeData] = useState([]);
+    const [originalData, setOriginalData] = useState([]);
 
-const styles = theme => ({
-    root: {
-        width: '100%',
-    },
-    grow: {
-        flexGrow: 1,
-    },
-    card: {
-        maxWidth: '100%',
-        margin: '8px',
-        shadow: '20px',
-    },
-    bigAvatar: {
-        margin: 10,
-        width: 60,
-        height: 60,
-    },
-    button: {
-        margin: theme.spacing.unit,
-    },
-    input: {
-        display: 'none',
-    },
-    gridListMain: {
-        transform: 'translateZ(0)',
-        cursor: 'pointer',
-
-    },
-});
-
-/*Class component Home defined with constructor & it's states */
-
-class Home extends Component {
-
-    constructor() {
-        super();
-        this.state = {
-            ownerInfo: [{}],
-            mediaInfo: [{}],
-            anchorEl:null,
-            imagecomment:"",
-            addComment:"dispComment",
-        }
-    }
-
-    /* Event  Handler Functions Definitions */
-
-    imageCommentOnChangeChangeHandler = (e) => {
-        this.setState({imagecomment: e.target.value});
-    }
-
-    addCommentOnClickHandler = (e) => {
-        this.setState({addedComment :this.state.imagecomment});
-
-    }
-
-    /*Code written to make two API calls as per the definitions provided in problem statement */
-
-    componentWillMount() {
-
-        // Get owner info after authenticating the  accessToken generated 
-        let ownerData = null;
-        let xhr = new XMLHttpRequest();
-        let that = this;
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
-                that.setState({
-                    ownerInfo: JSON.parse(this.responseText).data
-
-                });
-            }
-        })
-        xhr.open("GET", this.props.baseUrl + "me/media/fields=id,caption&access_token=IGQVJVVHptWmxfVXlCWUdLQmJxWnA4blBiNFVoMDhJNWg5cjNsd2lrTmx0WG5wWE9oX2FTY1dGVkhRNTlXNXBfU0lJNjlHRjVrM1B2Q2VYWXlpVUViYUUwMUNUMGRSTENEUU5sMnpxbExBUmtnQnZAwZAUZAtYmEwcWIxb1VZA");
-        xhr.send(ownerData);
-
-        // Get media info of owner after authenticated by accessToken
-        let mediaData = null;
-        let xhrMediaData = new XMLHttpRequest();
-
-        xhrMediaData.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
-                console.log(this.responseText);
-                that.setState({
-                    mediaInfo: JSON.parse(this.responseText).data
-                });
-            }
-        })
-        xhrMediaData.open("GET", this.props.baseUrl + "17841401944979493/media?fields=id,media_type,media_url,username,timestamp&access_token=IGQVJVVHptWmxfVXlCWUdLQmJxWnA4blBiNFVoMDhJNWg5cjNsd2lrTmx0WG5wWE9oX2FTY1dGVkhRNTlXNXBfU0lJNjlHRjVrM1B2Q2VYWXlpVUViYUUwMUNUMGRSTENEUU5sMnpxbExBUmtnQnZAwZAUZAtYmEwcWIxb1VZA");
-        xhrMediaData.send(mediaData);
-
-    }
-
-    /* Rendering JSX elements on the Login Page as per the design requirements */
-
-    render() {
-
-        const {classes} = this.props;
-
-        return (
-            <div>
-                <Header/>
-                <div className= "cardStyle">
-                    <br />
-                    <GridList cellHeight={"auto"} className={classes.gridListMain} cols={2}>
-                        {this.state.mediaInfo.map(image => (
-
-                            <GridListTile key={"image" + image.id} cols={image.cols || 1}>
-                                <Grid container className={classes.root} spacing={16}>
-                                    <Grid item>
-                                        <Card className={classes.card}>
-
-                                            <CardHeader
-                                                avatar={
-                                                    <Avatar className={classes.bigAvatar}>
-                                                        <img src={image.user.profile_picture} alt={"logo"} /></Avatar>
-                                                }
-                                                title={image.user.username}
-                                                subheader={image.created_time} />
-
-
-                                            <CardContent>
-                                                <img src={image.images.standard_resolution.url} alt={image.text} className="image-properties" />
-                                                <hr />
-                                                <Typography>{image.text}</Typography>
-                                                <Typography><div className="hash-tags">#{image.tags}</div></Typography>
-                                                <div className="likesFont">
-                                                    <Typography variant="h5" >
-                                                        <img src={hearticon} alt={"heartlogoTransparent"}   onClick={() => this.iconClickHandler} />
-                                                        {image.likes.count} Likes</Typography></div>
-                                                <br /><br />
-                                                <FormControl >
-                                                    <FormHelperText className={this.state.addComment}><div><Typography>: {this.state.addedComment}</Typography></div></FormHelperText>
-                                                </FormControl>
-                                                <br/>
-                                                <br/>
-                                                <FormControl>
-                                                    <InputLabel htmlFor="imagecomment">Add a Comment</InputLabel>
-                                                    <Input id="imagecomment" type="text" onChange={this.imageCommentOnChangeChangeHandler} />
-                                                </FormControl>
-                                                <Button id="addedcomment" variant="contained" color="primary" onClick={this.addCommentOnClickHandler}>ADD</Button>
-                                            </CardContent>
-
-                                        </Card>
-
-                                    </Grid>
-                                </Grid>
-                            </GridListTile>
-                        ))};
-
-                    </GridList>
-
-                </div>
-
-            </div>
-
+    useEffect(() => {
+      // check if valid auth
+      const auth = sessionStorage.userAuth;
+      if (auth) {
+        fetch(
+          `https://graph.instagram.com/me/media?fields=id,caption&access_token=${auth}`
         )
-    }
-}
-
-export default withStyles(styles)(Home);
+          .then(
+            rsp => {
+              if (rsp.status === 200) {
+                rsp.json().then(res => {
+                  const promises = res.data.map(item =>
+                    fetch(
+                      `https://graph.instagram.com/${item.id}?fields=id,media_type,media_url,username,timestamp&access_token=${auth}`
+                    )
+                  );
+                  Promise.all(promises)
+                    .then(
+                      responses => {
+                        return Promise.all(
+                          responses.map(function(response) {
+                            return response.json();
+                          })
+                        );
+                      },
+                      err => console.log(err)
+                    )
+                    .then(
+                      function(data) {
+                        const newData = data.map((item, i) => {
+                          const caption = res.data[i];
+                          // extract hastags from caption
+                          if (caption.caption) {
+                            item.rawCaption = caption.caption;
+                            item.hashtag = caption.caption
+                              .split(" ")
+                              .filter(str => str.startsWith("#"))
+                              .join(" ");
+                            item.caption = item.rawCaption.replace(
+                              /(^|\s)#[a-zA-Z0-9][^\\p{L}\\p{N}\\p{P}\\p{Z}][\w-]*\b/g,
+                              ""
+                            );
+                          } else {
+                            item.caption = null;
+                          }
+                          return {
+                            ...item,
+                            isLiked: i % 4 > 2,
+                            likeCount: i % 4,
+                            comments: i % 3 === 0 ? ["nice"] : [],
+                            comment: ""
+                          };
+                        });
+                        localStorage.dataSetOrg = JSON.stringify(newData);
+                        setHomeData(newData);
+                        setOriginalData(newData);
+                      },
+                      err => console.log(err)
+                    )
+                    .catch(err => console.log(err));
+                });
+              }
+            },
+            err => console.log(err)
+          )
+          .catch(err => console.log(err));
+      } else {
+        props.history.push("/");
+      }
+    }, []);
+  
+    useEffect(() => {
+      localStorage.dataSetOrg = JSON.stringify(homeDetails);
+    }, [homeDetails]);
+  
+    const updateComment = (value, index) => {
+      setHomeData(state => {
+        state[index].comment = value;
+        return [...state];
+      });
+    };
+  
+    const addComment = index => {
+      setHomeData(state => {
+        state[index].comments.push(state[index].comment);
+        state[index].comment = "";
+        return [...state];
+      });
+    };
+  
+    const toggleLike = index => {
+      setHomeData(state => {
+        state[index].isLiked = !state[index].isLiked;
+        state[index].likeCount = state[index].isLiked
+          ? state[index].likeCount + 1
+          : state[index].likeCount - 1;
+        return [...state];
+      });
+    };
+  
+    // On search filter the data 
+    const filterList = e => {
+      const searchVal = e.target.value;
+      if (searchVal) {
+        const filteredList = originalData.filter(
+          item =>
+            item.caption &&
+            item.caption.toLowerCase().includes(searchVal.toLowerCase())
+        );
+        setHomeData(filteredList);
+      } else {
+        setHomeData(originalData);
+      }
+    };
+    return (
+      <>
+        <Header isHome props={props} onChange={e => filterList(e)} />
+        <Grid
+          container
+          justify="space-between"
+          style={{ width: "70%", margin: "auto" }}
+        >
+          {homeDetails.map((item, index) => (
+            <Grid item sm={6} key={index}>
+              <Card className="post">
+                <CardHeader
+                  avatar={
+                    <img className="user-img" src={userImage} alt="avatar" />
+                  }
+                  title={
+                    <Typography gutterBottom>
+                      <b>{item.username}</b>
+                    </Typography>
+                  }
+                  subheader={moment(item.timestamp).format("DD/MM/YYYY HH:mm:ss")}
+                />
+                <CardContent>
+                  <div className="post-details">
+                    <img src={item.media_url} alt="avatar" />
+                    <Divider className="m-btm" />
+                    <Typography variant="body1">{item.caption}</Typography>
+                    <Typography variant="body1" className="hashtag">
+                      {item.hashtag}
+                    </Typography>
+                  </div>
+                </CardContent>
+                <CardActions>
+                  <Grid container direction="column" style={{ padding: "8px" }}>
+                    <Grid container alignItems="center">
+                      <span
+                        onClick={() => toggleLike(index)}
+                        className="like-post"
+                      >
+                        {item.isLiked ? (
+                          <Favorite style={{ color: "red" }} />
+                        ) : (
+                          <FavoriteBorder />
+                        )}
+                      </span>
+                      {item.likeCount ? (
+                        <span>
+                          {item.likeCount === 1
+                            ? "1 like"
+                            : `${item.likeCount} likes`}
+                        </span>
+                      ) : null}
+                    </Grid>
+                    <Grid item xs={12}>
+                      {item &&
+                        item.comments &&
+                        item.comments.map((comment, index) => (
+                          <Typography gutterBottom key={index}>
+                            <b>{item.username}</b> {comment}
+                          </Typography>
+                        ))}
+                    </Grid>
+                    <Grid
+                      container
+                      alignItems="flex-end"
+                      className="comment-container"
+                    >
+                      <TextField
+                        label="Add a comment"
+                        value={item.comment}
+                        onChange={e =>
+                          updateComment(e.currentTarget.value, index)
+                        }
+                        style={{ marginRight: "5px", width: "80%" }}
+                      />
+                      <Button
+                        color="primary"
+                        onClick={() => {
+                          if (item.comment) {
+                            addComment(index);
+                          }
+                        }}
+                        variant="contained"
+                      >
+                        Add
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </>
+    );
+  };
+  
+  export default Home;

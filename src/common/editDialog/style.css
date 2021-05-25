@@ -1,0 +1,27 @@
+.edit-modal {
+    outline: 0;
+}
+
+.edit-modal > div:first-child {
+    background-color: white !important;
+    opacity: 0.5 !important;
+}
+
+div[class^="makeStyles-paper"] {
+    outline: 0 !important;
+    border: unset !important;
+}
+
+.modal-title {
+    font-size: 22px;
+}
+
+.form-field {
+    margin-top: 15px !important;
+}
+
+.error-msg {
+    color: #f44336;
+    font-size: 14px;
+    margin-top: -10px;
+}

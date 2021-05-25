@@ -1,12 +1,55 @@
-.app-logo {
-   
-    position: relative;
-    top: 15%;
+header {
+    background: #263238;
+    color: white;
     font-size: 18px;
-    color: #fff;
+    padding: 0px 15px;
+    height: 51px;
 }
-.app-header {
-    background-color: #263238;
-    
-   
+
+.header-title {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.header-action {
+    display: flex;
+    align-items: center;
+}
+
+.header-action > .MuiFormControl-root {
+    background-color: #a8adaf;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.MuiFilledInput-underline:after {
+    border-bottom: unset !important;
+}
+
+.MuiInputAdornment-root {
+    margin-top: 0px !important;
+}
+
+#input-with-icon-textfield {
+    padding: 5px !important;
+}
+
+.avatar >button> span>img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+#simple-menu>.MuiPaper-root {
+    background-color: #dfdfdf !important;
+}
+#simple-menu>.MuiPaper-root >ul>hr {
+    margin: 0px 10px ;
 }

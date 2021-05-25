@@ -1,0 +1,95 @@
+.post-modal {
+    outline: 0;
+}
+  
+.post-modal > div:first-child {
+    background-color: white !important;
+    opacity: 0.5 !important;
+}
+
+div[class^="PostModal-paper"] {
+    outline: 0 !important;
+    border: unset !important;
+}
+
+#post-container {
+    display: flex;
+}
+
+.post-img {
+    width: 50%;
+}
+
+.post-img > img {
+    width: 100%;
+}
+
+.post-info {
+    width: 50%;
+    margin-left: 10px;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-header {
+    display: flex;
+}
+
+.post-avatar > img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.post-username {
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+hr {
+    margin-top: 10px;
+    color: #e0e0e0;
+}
+
+.post-caption {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.post-hastag {
+    font-size: 13px;
+    color: #429be8;
+}
+
+.post-comments {
+    margin-top: 20px;
+}
+
+.comments > .username {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.comments > .comment {
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.like-button {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.comment-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.like-post {
+    cursor: pointer;
+}

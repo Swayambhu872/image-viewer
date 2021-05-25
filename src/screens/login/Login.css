@@ -1,22 +1,19 @@
-.cardStyle{
-    width: 30%;
-    margin-top: 10px;
-    position: absolute;
-    left: 40%;
+.login-card {
+    width: 400px;
+    padding: 50px;
+    margin: 20px auto;
 }
-.login-content{
-    margin-left: 8%;
-}
-.dispNone {
-    display: none;
+  
+.form-field {
+    margin-bottom: 15px !important;
 }
 
-.dispBlock {
-    display: block;
+.error-msg {
+    color: #f44336;
+    font-size: 14px;
+    margin-top: -10px;
 }
 
-.red {
-    color: red;
+.login-button {
+    margin-top: 15px !important;
 }
-
-
