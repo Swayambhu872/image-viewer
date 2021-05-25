@@ -33,7 +33,7 @@ class Login extends Component {
 
         let mockUsernameInstagram = "admin";
         let mockPasswordInstagram = "admin";
-        let accessToken = "8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784";
+        let accessToken = "IGQVJVVHptWmxfVXlCWUdLQmJxWnA4blBiNFVoMDhJNWg5cjNsd2lrTmx0WG5wWE9oX2FTY1dGVkhRNTlXNXBfU0lJNjlHRjVrM1B2Q2VYWXlpVUViYUUwMUNUMGRSTENEUU5sMnpxbExBUmtnQnZAwZAUZAtYmEwcWIxb1VZA";
 
         if (this.state.username === mockUsernameInstagram && this.state.password === mockPasswordInstagram) {
             window.sessionStorage.setItem("access-token", accessToken);

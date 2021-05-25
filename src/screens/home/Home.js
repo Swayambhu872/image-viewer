@@ -54,8 +54,8 @@ class Home extends Component {
     constructor() {
         super();
         this.state = {
-            ownerInfo: [],
-            mediaInfo: [],
+            ownerInfo: [{}],
+            mediaInfo: [{}],
             anchorEl:null,
             imagecomment:"",
             addComment:"dispComment",
@@ -89,7 +89,7 @@ class Home extends Component {
                 });
             }
         })
-        xhr.open("GET", this.props.baseUrl + "me/media/fields=id,caption&access_token=8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784");
+        xhr.open("GET", this.props.baseUrl + "me/media/fields=id,caption&access_token=IGQVJVVHptWmxfVXlCWUdLQmJxWnA4blBiNFVoMDhJNWg5cjNsd2lrTmx0WG5wWE9oX2FTY1dGVkhRNTlXNXBfU0lJNjlHRjVrM1B2Q2VYWXlpVUViYUUwMUNUMGRSTENEUU5sMnpxbExBUmtnQnZAwZAUZAtYmEwcWIxb1VZA");
         xhr.send(ownerData);
 
         // Get media info of owner after authenticated by accessToken
@@ -104,7 +104,7 @@ class Home extends Component {
                 });
             }
         })
-        xhrMediaData.open("GET", this.props.baseUrl + "17895695668004550?fields=id,media_type,media_url,username,timestamp&access_token=8661035776.d0fcd39.39f63ab2f88d4f9c92b0862729ee2784");
+        xhrMediaData.open("GET", this.props.baseUrl + "17841401944979493/media?fields=id,media_type,media_url,username,timestamp&access_token=IGQVJVVHptWmxfVXlCWUdLQmJxWnA4blBiNFVoMDhJNWg5cjNsd2lrTmx0WG5wWE9oX2FTY1dGVkhRNTlXNXBfU0lJNjlHRjVrM1B2Q2VYWXlpVUViYUUwMUNUMGRSTENEUU5sMnpxbExBUmtnQnZAwZAUZAtYmEwcWIxb1VZA");
         xhrMediaData.send(mediaData);
 
     }
